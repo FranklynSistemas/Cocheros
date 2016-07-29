@@ -4,6 +4,8 @@ var express = require("express");
 var	app		= express();
 var argv = require('optimist').argv;
 
+app.set('port', (process.env.PORT || 5000));
+
 
 //Rutas	
 var routes = require('./routes/rutas');
@@ -30,6 +32,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/', routes);
 
-app.listen(8080,'127.0.0.1');
+//app.listen(8080,'127.0.0.1');
 //app.listen(3000,argv.fe_ip);
-console.log('Escuchando por el puerto 8080');
+//console.log('Escuchando por el puerto 8080');
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
