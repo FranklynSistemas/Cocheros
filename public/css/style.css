@@ -1,0 +1,179 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+
+.table-striped>tbody>tr:nth-of-type(odd){
+
+background-color:rgba(71, 174, 222, 0.29);
+
+}
+
+#imgInprix {
+ width:250px;
+ height:250px;
+}
+
+#Tabla{ 
+  position: relative;
+  background-color: white;
+  color: #263D8B;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 18px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h3 {
+/*    font: bold 22px sans-serif !important; 
+    font-family: 'Avant Garde' !important;
+    color: #263D8B !important;
+*/
+	 font: normal 22px 'Open Sans Condensed' !important;
+	color: #263D8B !important;
+	/*font-family: 'Myriad Set Pro' !important;*/
+}
+
+html{
+	background-color: #47aede !important;
+}
+
+body{
+	font:14px/1.5 'Open Sans Condensed', Arial, Helvetica, sans-serif;
+	margin:0;
+	background-color: #47aede;
+
+}
+
+#Cargando{
+    margin-left: 50%;
+   
+}
+
+#Loading{
+    margin: 0 auto;
+}
+
+header{
+    box-sizing: border-box;
+	text-align: center;
+    width: 100%;
+    padding: 25px 40px;
+    background-color: #673AB7;
+    overflow: hidden;
+}
+
+
+header h1{
+    float: left;
+	font: normal 24px/1.5 'Open Sans', sans-serif;
+	color: #fff;
+}
+
+header a{
+    color:#fff;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    padding: 13px 50px;
+    border-radius: 3px;
+    font: bold 14px/1 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    background-color:#F05283;
+    
+}
+
+ul {
+    list-style: none;
+    border-bottom: 1px solid #EAEAEA;
+    background-color: #FFF;
+    padding: 20px;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul a{
+    text-decoration: none !important;
+    color: #FFF !important;
+    text-align: left;
+    background-color:  #47aede;
+    padding: 10px 16px;
+    border-radius: 2px;
+    opacity: 0.8;
+    font-size: 16px;
+    display: inline-block;
+    margin: 4px;
+    line-height: 1;
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+ul li a.active{
+    background-color: #1b6588;
+    pointer-events: none;
+}
+
+ul li a:hover {
+    opacity: 1;
+}
+
+
+ul li{
+    display: inline-block;
+    font-family: 'Open Sans Condensed';
+}
+
+
+@media (max-width: 1000px) {
+
+
+    header h1{
+        float: none;
+    }
+
+    header a{
+        margin-top: 25px;
+        float: none;
+    }
+
+}
+
+.main-content{
+    margin-bottom: 10px;
+    position: relative;
+   /* background-image: url("../img/lines.png");
+    background-repeat: no-repeat;*/
+}
+
+/* -- Demo ads -- */
+
+@media (max-width: 1200px) {
+	#bsaHolder{ display:none;}
+}
+
+/* -- Link to Tutorialzine -- */
+
+.tz-link{
+	text-decoration: none;
+	color: #fff !important;
+	font: bold 36px Arial,Helvetica,sans-serif !important;
+}
+
+.tz-link span{
+	color: #da431c;
+}
+
+#paper{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+}

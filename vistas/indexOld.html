@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="/img/Inprix.png" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{titulo}}</title>
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" href="css/form-validation.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <script src = "js/jquery1.9.1.js"></script>
+  <script src="js/alertify.js"></script>
+  <script src = "js/script.js"></script>
+</head>
+ <ul>
+        <li><a href="/procesos" >Últimos Procesos</a></li>
+        <li><a href="/" class="active">Comenzar</a></li>
+        <li><a href="/es">¿Qué es?</a></li>
+        <li><a href="/somos">Compras Publicas</a></li>
+        <li><a href="/contact">Contáctenos</a></li>
+        
+    </ul>
+ 
+    <div class="main-content">
+
+        <!-- You only need this form and the form-validation.css -->
+
+        <form class="form-validation" method="post" action="#">
+
+            <div class="form-title-row">
+                <h1><img src="/img/Inprix.png"></h1>
+            </div>
+
+            <div class="form-row form-input-name-row">
+
+                <label>
+                    <span>Nombres</span>
+                    <input id="Nombres" type="text" name="Nombres">
+                </label>
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+            <div class="form-row form-input-Apellidos-row">
+
+                <label>
+                    <span>Apellidos</span>
+                    <input id="Apellidos" type="text" name="Apellidos">
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row form-input-Telefono-row">
+
+                <label>
+                    <span>Teléfono</span>
+                    <input id="Telefono" type="number" name="Telefono">
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row form-input-email-row">
+
+                <label>
+                    <span>Correo</span>
+                    <input id="Correo" type="email" name="correo" placeholder="email@example.com">
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row">
+
+                <label>
+                    <span>Departamento</span>
+                    <select id="Departamento">
+                    </select>
+                </label>
+
+            </div>
+
+            <div class="form-row">
+
+                <label>
+                    <span>Actividad</span>
+                    <select id="Actividad">
+                    </select>
+                </label>
+
+            </div>
+
+            <div class="form-row">
+                <input class="Validate" type="button" id="Enviar" value="Enviar">
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="../imagenes/icon.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inprix Admin</title>
+<!--Editor-->
+<link rel="Stylesheet" type="text/css" href="../dashboard/css/jHtmlArea.css"/>
+
+<link href="../dashboard/css/bootstrap.min.css" rel="stylesheet">
+<link href="../dashboard/css/datepicker3.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../dashboard/css/sweetalert.css">
+<link href="../dashboard/css/styles.css" rel="stylesheet">
+
+ 
+<!--Icons-->
+<script src="../dashboard/js/lumino.glyphs.js"></script>
+
+
+
+
+<!--[if lt IE 9]>
+<script src="../dashboard/js/html5shiv.js"></script>
+<script src="../dashboard/js/respond.min.js"></script>
+<![endif]-->
+	
+
+	<script src="../dashboard/js/jquery-1.11.1.min.js"></script>
+	<script src="../dashboard/js/bootstrap.min.js"></script>
+	<script src="../dashboard/js/sweetalert.min.js"></script>
+
+
+	<!--Editor-->
+    <script src="../dashboard/js/jHtmlArea-0.8.min.js"></script>
+	<script src="../dashboard/js/script.js"></script>
+	
+	
+	<script>
+		!function ($) {
+		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+		        $(this).find('em:first').toggleClass("glyphicon-minus");      
+		    }); 
+		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>	
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>Inprix</span>Admin</a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="Salir"><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Cerrar Sesión</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li class="active"><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>Administración</a></li>
+			<li class="parent " data-toggle="collapse" href="#sub-item-1">
+				<a href="#">
+					<span ><svg class="glyph stroked male user"><use xlink:href="#stroked-male-user"></use></svg></span> Usuarios 
+				</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li>
+						<a  id="btn_MostrarUsers" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Ver Usuarios
+						</a>
+					</li>
+					<li>
+						<a  id="btn_CrearUsers" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Crear Usuarios
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="parent " data-toggle="collapse" href="#sub-item-2">
+				<a href="#">
+					<span ><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></span> Noticias 
+				</a>
+				<ul class="children collapse" id="sub-item-2">
+					<li>
+						<a  id="btn_MostrarNoticias" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Ver Noticias
+						</a>
+					</li>
+					<li>
+						<a  id="btn_CrearNoticias" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Crear Noticias
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li role="presentation" class="divider"></li>
+			<li><a href="#" class="Salir"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Cerrar Sesión</a></li>
+		</ul>
+
+	</div><!--/.sidebar-->
+		
+	<div id="Informacion" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1>Bienvenid@ a la plataforma Administrativa de Inprix</h1>
+    </div>
+	
+    <div id="MuestraUsuarios" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="table-responsive ">
+            <h1>Usuarios</h1>
+            <table id="TablaUsuarios" data-toggle="table" class="table table-striped toggle-circle-filled"> 
+              
+                <thead>
+                  <tr>
+                    <th data-hide="phone,tablet">Id</th>
+                    <th data-hide="phone,tablet">Usuario</th>
+                    <th data-toggle="true">Nombres</th>
+                    <th>Apellidos</th>
+                    <th data-hide="phone,tablet">Contraseña</th>
+                    <th data-hide="phone,tablet">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="Muestradatos"></tbody>
+          	</table>
+        </div>
+    </div>
+
+    <div id="crearUsuarios" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Usuarios</h1>
+          <h2 class="sub-header">Crear Usuario</h2>
+        <div class="container">
+        <div class="row">
+        <form action="#" method="POST">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="Nombres">Nombres</label>
+                    <input type="text" class="form-control" id="Nombres" name="Nombres" placeholder="Nombres" tabindex='1' required>
+                </div>
+                <div class="form-group">
+                    <label for="Usuario">Usuario</label>
+                    <input type="text" class="form-control" id="Usuario" name="Usuario" placeholder="Usuario" tabindex='3' required>
+                </div>
+                <button type="submit" class="btn btn-default" id="btn_GuardarUser" tabindex='5'>Guardar</button>
+            </div>
+            <div class="col-xs-5">
+               <div class="form-group">
+                    <label for="Apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="Apellidos" tabindex='2' required>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Contraseña</label>
+                    <input type="text" class="form-control" id="pass" name="pass" placeholder="Contraseña" tabindex='4' required>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <div id="MuestraTablaNoticias" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="table-responsive ">
+            <h1>Noticias</h1>
+            <table id="TablaNoticias" data-toggle="table" class="table table-striped toggle-circle-filled"> 
+              
+                <thead>
+                  <tr>
+                    <th data-hide="phone,tablet">Id</th>
+                    <th data-hide="phone,tablet">Título</th>
+                    <th data-toggle="true">Información</th>
+                    <th>Categoria</th>
+                    <th data-hide="phone,tablet">Fecha</th>
+                    <th data-hide="phone,tablet">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="MuestraNoticias"></tbody>
+          	</table>
+        </div>
+    </div>
+
+    <div id="crearNoticias" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Noticias</h1>
+          <h2 class="sub-header">Crear nueva noticia</h2>
+        <div class="container">
+        <div class="row">
+        <form action="/Noticias" method="POST">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="titulo">Tíulo</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Tíulo" tabindex='1' required>
+                </div>
+               <div class="form-group" style="width: 207%;">
+                    <label for="info">Información</label>
+                    <textarea style="width: 207%; height: 200px;" class="form-control" id="info" name="info"  tabindex='3' required></textarea> 
+               </div>
+                <button type="submit" class="btn btn-default" id="btn_GuardarNoticia" tabindex='4'>Guardar</button>
+            </div>
+            <div class="col-xs-5">
+              <div class="form-group" >
+                    <label for="lastname">Categoria</label>
+                    <select class="form-control" id="listcategorias" name="listcategorias" tabindex='2'>
+                    </select>
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+    </div>
+
+<!-- Modal -->
+<div id="myModalNoticia" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar Noticia</h4>
+      </div>
+      <div class="modal-body">
+      	<p id="idNoticia" style="display: none;"></p>
+        <label for="titulo">Título</label>
+        <input type='text' class="form-control" id='muestraTitulo' disabled>
+        <label for="categoria">Categoria</label>
+        <input type='text' class="form-control" id='muestraCategoria' disabled>
+        <select class="form-control" id="newlistcategorias"></select>
+        <label for="fecha">Fecha</label>
+        <input type='text' class="form-control" id='muestraFecha' disabled>
+        <label for="informacion">Información</label>
+        <textarea style="width: 100%; height: 100px;" class="form-control" id="muestraInfo" name="info"  disabled></textarea>
+        <button class="btn btn-info" id="btn_EdNoticia">Editar</button>
+        <button class="btn btn-info" id="btn_GdNoticia">Guardar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModalUsuario" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Editar Usuario</h4>
+      </div>
+      <div class="modal-body">
+      <p id="idUser" style="display: none;"></p>
+      	<label for="Nombres">Nombres</label>
+        	<input type="text" class="form-control" id="newNombres" name="newNombres" >
+        <label for="Apellidos">Apellidos</label>
+        	<input type="text" class="form-control" id="newApellidos" name="newNombres">
+        <label for="Usuario">Usuario</label>
+        	<input type="text" class="form-control" id="newUsuario" name="newUsuario">
+        <label for="pass">Contraseña</label>
+        <input type="text" class="form-control" id="newPass" name="newPass">
+        <button class="btn btn-info" id="btn_EdUser">Editar</button>
+        <button class="btn btn-info" id="btn_GdUser">Guardar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--
+<script>
+      $(function() {
+          $('#info').froalaEditor(); 
+          $('#info').froalaEditor('html.set', '<p>My custom paragraph.</p>');
+      });
+      
+  </script>
+
+-->
+</body>
+
+</html>

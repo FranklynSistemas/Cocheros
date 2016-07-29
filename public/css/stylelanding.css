@@ -1,0 +1,296 @@
+body,
+html,
+.container {
+    height: 100%
+}
+body {
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text
+}
+.pagebg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+#bg_0 {
+    background-image: url('../imagenes/bg_0.png');
+    opacity: 1
+}
+#bg_1 {
+    background-image: url('../imagenes/bg_1.png');
+    opacity: 0
+}
+#bg_2 {
+    background-image: url('../imagenes/bg_2.png');
+    opacity: 0
+}
+#logowrapper {
+    position: relative;
+    height: 320px
+}
+#logo {
+    background: url(../imagenes/logo.png);
+    color: #3c3d40;
+    font-size: 0;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    text-indent: -9999px;
+    width: 320px
+}
+#subscribe {
+    margin-top: 40px
+}
+input {
+    border: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25);
+    -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25);
+    -o-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25);
+    color: #333;
+    font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    text-align: center
+}
+input::-webkit-input-placeholder {
+    color: #bbb
+}
+input:-moz-placeholder {
+    color: #bbb
+}
+input:focus {
+    outline: 0
+}
+#email {
+    width: 82%
+}
+#email:hover,
+#email:focus {
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(0, 0, 0, 0.15)
+}
+#submitwrapper {
+    position: relative;
+    width: 50%;
+}
+#submit {
+    color: #fff;
+    font-weight: bold;
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    transition: background-color 1s;
+    width: 100%
+}
+#submit:hover,
+#submit:focus {
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(255, 255, 255, 0.25);
+    -o-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .25), inset 0 0 4px 4px rgba(255, 255, 255, 0.25)
+}
+#submit:active {
+    -webkit-box-shadow: inset 0 2px 2px 1px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: inset 0 2px 2px 1px rgba(0, 0, 0, 0.20);
+    -o-box-shadow: inset 0 2px 2px 1px rgba(0, 0, 0, 0.20);
+    box-shadow: inset 0 2px 2px 1px rgba(0, 0, 0, 0.20);
+    color: #ccc;
+    position: relative
+}
+#message {
+    background: #fff;
+    border-radius: 5px;
+    display: none;
+    font-size: 16px;
+    height: 22px;
+    padding: 14px 0;
+    position: absolute;
+    text-align: center;
+    width: 82%;
+    z-index: 3
+}
+#iphone {
+    background: url(../imagenes/iphone.png);
+    height: 740px;
+    margin: 0 auto 75px;
+    position: relative;
+    width: 370px
+}
+#glare {
+    background: url(../imagenes/glare.png);
+    height: 740px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 370px;
+    z-index: 1
+}
+#screenwrapper {
+    height: 512px;
+    left: 36px;
+    overflow: hidden;
+    position: absolute;
+    top: 115px;
+    width: 288px
+}
+.screen {
+    background-repeat: no-repeat;
+    height: 512px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: background-image .3s;
+    -moz-transition: background-image .3s;
+    -o-transition: background-image .3s;
+    transition: background-image .3s;
+    width: 288px
+}
+#screen_0 {
+    background-image: url('../imagenes/screen_0.png');
+    background-size: 100%;
+}
+#screen_0:hover,
+#screen_0.hover {
+    background-image: url('../imagenes/hover_0.png');
+}
+#screen_1 {
+    background-image: url('../imagenes/screen_1.png');
+    left: 288px;
+    background-size: 100%;
+}
+#screen_1:hover,
+#screen_1.hover {
+    background-image: url('../imagenes/hover_1.png')
+}
+#screen_2 {
+    background-image: url('../imagenes/screen_2.png');
+    left: 576px;
+    background-size: 100%;;
+}
+#screen_2:hover,
+#screen_2.hover {
+    background-image: url('../imagenes/hover_2.png')
+}
+#screen_3 {
+    background-image: url('../imagenes/screen_3.png');
+    left: 864px;
+    background-size: 100%;;
+}
+#screen_3:hover,
+#screen_3.hover {
+    background-image: url('../imagenes/hover_3.png')
+}
+#screen_4 {
+    background-image: url('../imagenes/screen_4.png');
+    left: 1152px;
+    background-size: 100%;;
+}
+#screen_4:hover,
+#screen_4.hover {
+    background-image: url('../imagenes/hover_4.png')
+}
+#screen_5 {
+    background-image: url('../imagenes/screen_5.png');
+    left: 1440px;
+    background-size: 100%;;
+}
+#screen_5:hover,
+#screen_5.hover {
+    background-image: url('../imagenes/hover_5.png')
+}
+#screen_6 {
+    background-image: url('../imagenes/screen_6.png');
+    left: 1728px;
+    background-size: 100%;;
+}
+#screen_6:hover,
+#screen_6.hover {
+    background-image: url('../imagenes/hover_6.png')
+}
+.footer {
+    background: #aaacac;
+    bottom: 0;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    height: 50px;
+    left: 0;
+    line-height: 50px;
+    position: fixed;
+    text-align: center;
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    transition: background-color 1s;
+    width: 100%;
+    z-index: 2
+}
+.footer.bg_0,
+#submit.bg_0 {
+    background: #aaacac
+}
+.footer.bg_1,
+#submit.bg_1 {
+    background: #867d73
+}
+.footer.bg_2,
+#submit.bg_2 {
+    background: #5f5c6a
+}
+.footer a {
+    color: #fff;
+    text-decoration: none
+}
+.footer a:hover {
+    color: #ccc
+}
+
+#text{
+	color: white;
+    font-size: 15px;
+}
+
+#Botones{
+	width: 400px;
+	display:inline-block;
+}
+
+#googlePlay{
+	background-image: url('../imagenes/googlePlay.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 200px;
+	height: 100px;
+	float: left;
+    cursor: pointer;
+}
+
+#appStore{
+	background-image: url('../imagenes/appstore.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 200px;
+	height: 100px;
+	float: right;
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+@media only screen and (min-width: 768px) {
+    .fullheight {
+        height: 100%
+    }
+    #logowrapper {
+        margin-top: -300px;
+        top: 47%
+    }
+    #iphone {
+        margin: -370px auto 0;
+        top: 47%
+    }
+}
+@media only screen and (max-width: 600px) {
+	#iphone {
+        margin: -370px auto 0;
+        margin-top: 300px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #iphone {
+        margin: 0 -30px 75px;
+        margin-top:350px;
+    }
+
+    #googlePlay{
+    	background-size: 70%;
+    }
+
+    #appStore{
+    	background-size: 70%;
+    	margin-left: 160px !important;
+    	float: none;
+    }
+}

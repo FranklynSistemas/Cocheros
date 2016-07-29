@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="/img/Inprix.png" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{titulo}}</title>
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" href="css/form-validation.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <script src = "js/jquery1.9.1.js"></script>
+  <script src="js/alertify.js"></script>
+  <script src = "js/script.js"></script>
+   <script src = "js/fondoAnimado.js"></script>
+</head>
+ <ul>
+        <li><a href="/procesos">Últimos Procesos</a></li>
+        <li><a href="/comenzar">Comenzar</a></li>
+        <li><a href="/es">¿Qué es?</a></li>
+        <li><a href="/somos">Compras Publicas</a></li>
+        <li><a href="/contact" class="active">Contáctenos</a></li>
+        <li><a href="/actualidad">Actualidad</a></li>
+        <li><a href="/normatividad">Normatividad</a></li>
+        <li><a href="/asocpublic">Asoc. Público Privadas</a></li>
+    </ul>
+    <canvas id="paper">
+    </canvas>
+    <div class="main-content">
+
+    <form class="form-validation" method="post" action="#">
+
+
+    <div class="form-title-row">
+        <h1><img id="imgInprix" src="/img/Inprix.png"></h1>
+    </div>
+    <h3>Contáctenos</h3> 
+      <br>
+    <div class="form-row form-input-nameContac-row">
+
+                <label>
+                    <span>Nombres y Apellidos</span>
+                    <input id="NombresContac" type="text" name="Nombres">
+                </label>
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+    </div>
+            <div class="form-row form-input-TelefonoContac-row">
+
+                <label>
+                    <span>Teléfono</span>
+                    <input id="TelefonoContac" type="number" name="Telefono">
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row form-input-emailContac-row">
+
+                <label>
+                    <span>Correo</span>
+                    <input id="CorreoContac" type="email" name="correo" placeholder="email@example.com">
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row form-input-MensajeContac-row">
+
+                <label>
+                    <span id="Msg">Mensaje</span>
+                    <textarea id="MensajeContac" cols="15" rows="5"></textarea>
+                </label>
+
+                <span class="form-valid-data-sign"><i class="fa fa-check"></i></span>
+
+                <span class="form-invalid-data-sign"><i class="fa fa-close"></i></span>
+                <span class="form-invalid-data-info"></span>
+
+            </div>
+
+            <div class="form-row">
+                <input class="Validate" type="button" id="EnviarContac" value="Enviar">
+
+            </div>
+
+            <div>
+              <p align="center"> <img src="img\empresa.png" width="25px" height="25px"> Carrera 6. No. 14-98 Ofc. 903 Bogota D.C - Colombia</p> 
+              <p> <img src="img\correo.png" width="20px" height="20px"> info@galavi.co</p>
+            </div>
+
+         
+    </form>
+        
+
+    </div>
+
+</body>
+
+</html>

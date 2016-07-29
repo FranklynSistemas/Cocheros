@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="/img/Inprix.png" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{titulo}}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link href="css/footable.core.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+  <link rel="stylesheet" href="css/alertify.core.css" />
+  <link rel="stylesheet" href="css/alertify.default.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" href="css/form-validation.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<!--    <script src ="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="/javascripts/jquery-2.0.3.min.js"></script>--> 
+
+  <!--<script src = "js/jquery1.9.1.js"></script>-->
+  <script src="js/footable.js" type="text/javascript"></script>
+  <script src="js/alertify.js"></script>
+  <script src = "js/script.js"></script>
+  <script src = "js/fondoAnimado.js"></script>
+ 
+</head>
+ <ul>
+        <li><a href="/procesos" class="active">Últimos Procesos</a></li>
+        <li><a href="/comenzar">Comenzar</a></li>
+        <li><a href="/es">¿Qué es?</a></li>
+        <li><a href="/somos">Compras Publicas</a></li>
+        <li><a href="/contact">Contáctenos</a></li>
+        <li><a href="/actualidad">Actualidad</a></li>
+        <li><a href="/normatividad">Normatividad</a></li>
+        <li><a href="/asocpublic">Asoc. Público Privadas</a></li>
+        
+    </ul>
+    <canvas id="paper">
+    </canvas>
+    <div class="main-content">
+
+    <div class="form-validation" >
+
+    <div class="form-title-row">
+        <h1><img id="imgInprix" src="/img/Inprix.png"></h1>
+    </div>
+    <h3>Últimos procesos convocados Secop</h3> 
+    </div>
+    </div>
+
+     <div id="Tabla" class="table-responsive">
+         <table id="MyTable" data-toggle="table" class="table table-striped toggle-circle-filled">
+            <thead> <tr>
+                    <th data-hide="phone,tablet">Id</th>
+                    <th data-hide="phone,tablet">N° de Proceso</th>
+                    <th data-hide="phone,tablet">Tipo de Proceso</th>
+                    <th data-hide="phone,tablet">Estado</th>
+                    <th data-hide="phone,tablet">Entidad</th>
+                    <th data-toggle="true">Objeto</th>
+                    <th>Lugar</th>
+                    <th>Cuantía</th>
+                    <th data-hide="phone,tablet">Fecha</th>
+                    <th>Ver Más</th>
+                    </tr>
+            </thead>
+         <tbody id="Muestradatos">
+             
+         </tbody>
+         </table>
+     </div>
+
+ <!--<script src ="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>-->
+ <script src ="js/jquery.dataTablesEs.js"></script>
+</body>
+</html>
