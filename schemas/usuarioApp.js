@@ -21,7 +21,7 @@ var usuariosappSchema = new Schema({
    Abierto: Boolean,
    Ubicacion:Object,
    Favoritos: Array,
-   Hora: String
+   Hora: {ini:String,fin:String}
 });
 
 module.exports = mongoose.model('usuariosapp', usuariosappSchema,'usuariosapp');
