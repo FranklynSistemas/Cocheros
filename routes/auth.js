@@ -62,7 +62,7 @@ exports.emailLogin = function(req, res) {
             UsuariosApp.update({Usuario: req.body.Usuario},{NumSesiones:1,Token_Device: req.body.DeviceToken},{upsert:true},function(err, numAfectados){
               return res
               .status(200)
-              .send({status: true,token: service.createToken(user)});
+              .send({status: true,Rol:user.Rol,token: service.createToken(user)});
             });
           }else if(user.Pass !== req.body.Pass){
             res.json({status: false, info: "errPass"});
