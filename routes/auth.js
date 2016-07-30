@@ -151,7 +151,8 @@ function mapeoDatos(data,cont){
              Abierto: false,
              Ubicacion: {},
              Favoritos: [],
-             Foto: ""
+             Foto: "",
+             Hora:""
             };
 }
 
