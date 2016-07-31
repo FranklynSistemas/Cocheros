@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var UsuariosApp = require('../../schemas/usuarioApp');
 
 //Envio de correos
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('');
 
 var fechas = require('./fechaColombia');
 

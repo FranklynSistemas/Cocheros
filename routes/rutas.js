@@ -9,7 +9,7 @@ var auth = require('./auth');
 var middleware = require('./middleware');
 
 //Envio de Correos
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('');
 
 //Consultas
 var consultas = require('./Utilidades/consultas');
