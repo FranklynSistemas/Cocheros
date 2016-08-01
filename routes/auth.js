@@ -152,7 +152,9 @@ function mapeoDatos(data,cont){
              Ubicacion: {},
              Favoritos: [],
              Foto: "",
-             Hora:{ini:"",fin:""}
+             Hora:{ini:"",fin:""},
+             Contacto:"",
+             Estado:""
             };
 }
 
