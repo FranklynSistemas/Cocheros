@@ -87,6 +87,10 @@ router.post('/ActualizaPerfil', consultas.ActualizaPefil);
 
 //Cocheros
 router.get('/TraeCocheros',consultas.TraeCocheros);
+router.post('/AgregarFavoritos',consultas.AgregarFavoritos);
+router.post('/TraerFavoritos',consultas.TraerFavoritos);
+
+
 
 // Ruta solo accesible si estás autenticado
 router.get('/private',middleware.ensureAuthenticated, function(req, res) {

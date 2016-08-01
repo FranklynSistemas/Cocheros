@@ -43,101 +43,30 @@ exports.TraeCocheros = function(req, res) {
 }
 
 
-
-exports.ultimosDatos = function(req, res) { 
-
-    // output json
-    res.contentType('json');
-
-    // use our lame formatter
-    var format = new ArrayFormatter;
-
-    datos.find().sort({"FechaSave":-1}).limit(1000).stream().pipe(format).pipe(res);
-    
-}
-
-exports.DatosSegunConsulta = function(req, res) { 
-	 // output json
-    res.contentType('json');
-    // use our lame formatter
-    var format = new ArrayFormatter;
-    console.log(req.body.id);
-	UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
-			console.log(err, data);
-		  if (err){
-	         console.log("Error general "+err);
-	      }else{  
-	      	datos.find(creaQuery(data.Actividad,data.Departamento)).sort({"FechaSave":-1}).limit(500).stream().pipe(format).pipe(res);
-	      }
-	});
-    //console.log(res.end().data);
-    //return res.end();
-}
-
-//Actualiza la configuracion del usuario
-exports.ActualizaDatos = function(req,res){
-  var datosAux = req.body.datos;
-  datos.count(creaQuery(datosAux.Actividad,datosAux.Departamento),function(err,cont){
-    datosAux.NumeroRegistros = cont;
-    UsuariosApp.update({"_id" : mongoose.Types.ObjectId(req.body.id)},datosAux,{upsert:true},function(err,numAffected){
-                console.log(numAffected);
-                if(numAffected){
-                  res.json({status:true});
-                }else{
-                  res.json({status:false});
-                }
-    });
-  });    
-}
-
-//Trae Departamentos y Actividades presentes en la configuracion del usuario
-exports.TraePreferencias = function(req,res){
-
-  var info = {};
-  
-  UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
-    info.Notificaciones = data.Notificaciones;
-    info.ArrayActividades = data.Actividad;
-    info.ArrayDepartamentos = data.Departamento;
-    
-    if(!err){
-      Departamentos.find({'id': {$in: data.Departamento}},function(errDep, dataDep){
-        info.Departamentos = dataDep;
-        //console.log(dataDep);
-        if(!errDep){
-          Actividades.find({'id' : { $in:data.Actividad}},function(errAct,dataAct){
-            if(!errAct){
-              info.Actividades = dataAct;
-              //console.log(dataAct);
-              res.json(info);
-            }else{
-              res.json({status: false});
-            }
-          });
-        }else{
-          res.json({status: false});
-        }
-      });
-      
-    }else{
-      res.json({status: false});
-    }
-
-  });
-}
-
 //Guarda los porcesos favoritos del usuario
-exports.GuardaFavoritos = function(req,res){
+exports.AgregarFavoritos = function(req,res){
   UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
     if(!err){
-      var objFavoritos = AddFavoritos(req.body.favorito,data.Favoritos);
+      var objFavoritos = AddFavoritos(req.body.datos,data.Favoritos);
       if(objFavoritos.idx === -1 && req.body.action === 1){        
            ActualizaFavoritos(mongoose.Types.ObjectId(req.body.id),objFavoritos.data, function(obj){
-              res.json(obj);
+              if(obj.status){
+                replicaFavorito(req.body.id,req.body.datos,req.body.action, function(result){
+                  res.json(result);
+                });
+              }else{
+                res.json({status:false, info:"ErrorActualizandoFavoritos"});
+              }
            });
       }else if(req.body.action === 2){
            ActualizaFavoritos(mongoose.Types.ObjectId(req.body.id),objFavoritos.data, function(obj){
-              res.json(obj);
+              if(obj.status){
+                replicaFavorito(req.body.id,req.body.datos,req.body.action, function(result){
+                  res.json(result);
+                });
+              }else{
+                res.json({status:false, info:"ErrorActualizandoFavoritos"});
+              }
            });
       }else{
         res.json({status:false, info: "Existe"});
@@ -147,16 +76,34 @@ exports.GuardaFavoritos = function(req,res){
   });
 }
 
+function replicaFavorito(idCliente, idVendedor, Action, callback){
+  UsuariosApp.findOne({"_id" : idVendedor}, function(err, data){
+      if(!err){
+        var objFavoritos = AddFavoritos(idCliente,data.Favoritos);
+        if(objFavoritos.idx === -1 && Action === 1){        
+             ActualizaFavoritos(idVendedor,objFavoritos.data, function(obj){
+                callback(obj);
+             });
+        }else if(Action === 2){
+             ActualizaFavoritos(idVendedor,objFavoritos.data, function(obj){
+                callback(obj);
+             });
+        }else{
+          callback({status:false, info: "Existe"});
+        }
+      }
+
+    });
+};
+
 function AddFavoritos(newFavorito,favoritos) {
-  var idx = favoritos.ids.indexOf(newFavorito);
+  var idx = favoritos.indexOf(newFavorito);
   console.log(idx);
   if(idx===-1){
-      favoritos.ids.push(newFavorito);
-      favoritos.NumRegFavoritos.push(0);
+      favoritos.push(newFavorito);
       return {idx: idx, data: favoritos};
   }else{
-      favoritos.ids.splice(idx,1);
-      favoritos.NumRegFavoritos.splice(idx,1);
+      favoritos.splice(idx,1);
       return {idx: idx, data: favoritos};
   }
 }
@@ -175,41 +122,23 @@ function ActualizaFavoritos(id,favoritos, callback){
 }
 //---------------------------------------------------------------------
 
-
-//Trae los porcesos favoritos del usuario 
-
-exports.TraeFavoritos = function(req, res) { 
-   // output json
-    res.contentType('json');
-    // use our lame formatter
-    var format = new ArrayFormatter;
-	console.log(req.body.id);
-  UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
-        if (err){
-           console.log("Error general "+err);
-        }else{ 
-        console.log(data); 
-	 if(fechas.GeneraFechaIniFinal(3) <= data.Fecha.FechaFinal){
-            if(data.Favoritos.ids.length > 0){ 
-              datos.find({"_id" : { $in: data.Favoritos.ids }}).sort({"FechaSave":-1}).limit(100).stream().pipe(format).pipe(res);
-            }else{
-              res.json({status: false, info: "NoData"});
-            }
-          }else{
-            UsuariosApp.update({"_id" : mongoose.Types.ObjectId(req.body.id)},{Activo:false},{upsert:true},function(err,numAffected){
-              console.log(numAffected);
-              if(numAffected){
-                res.json({status: false, info: "NoPago"});
-              }else{
-                res.json({status: false, info: "NoUpdate"});
-              }
-            });
-          }
-        }
-  });
+exports.TraerFavoritos = function(req, res) { 
+    UsuariosApp.findOne({"_id":req.body.id}, function(err, data){
+       if(data){
+        UsuariosApp.find({'_id': {$in: data.Favoritos}}, function(err, result){
+          res.json({status:true, info: result});
+        });
+       }else{
+        res.json({status:false,info: "NoSeEncontroInfo"});
+       }
+    });
 }
 
-//-----------------------------------------
+function BuscaFavorito(newFavorito,favoritos) {
+  var idx = favoritos.indexOf(newFavorito);
+      favoritos.splice(idx,1);
+      return {idx: idx, result: favoritos};
+  }
 
 //Verifica que el correo exista en base de datos y de ser asi envia el usuario y contraseña
 exports.RecuperarPass = function(req, res) { 
@@ -234,79 +163,7 @@ exports.RecuperarPass = function(req, res) {
 }
 //------------------------------------------------------------------------------------------
 
-//**********************************Historial***********************************************
 
-//============================Trae Historial================================================
-
-exports.TraeHistorial = function(req,res){
-   var Historial = [];
-  UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){ 
-   if(data.Historial.length >0){
-     for (var i = data.Historial.length - 1; i >= 0; i--) {
-       Historial.push(data.Historial[i]); 
-     };
-     res.json({status:true, Historial:Historial});
-    }else{
-      res.json({status:false,Historial: null});
-    }
-
-  });
-}
-
-//=========================================================================================
-
-//============================Eliminar Historia=============================================
-
-exports.EliminarHistorial = function(req,res){
-  UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
-    if(data){
-      var Historial = [];
-      UsuariosApp.update({"_id" : mongoose.Types.ObjectId(req.body.id)},{Historial:Historial},{upsert:true},function(err,numAffected){
-        if(numAffected){
-          res.json({status:true});
-        }else{
-          res.json({status:false});
-        }
-      });
-    }else{
-      res.json({status:false});
-    }
-
-  });
-}
-
-//==========================================================================================
-
-//*****************************************************************************************
-
-
-
-//Crea el query de consulta segun la actividad y el departamento
-function creaQuery(Actividad,Departamento){
-
-	console.log(Actividad.length+" - "+Departamento.length);
-  if(Actividad.indexOf(0) === -1 && Departamento.indexOf(0) === -1){
-
-    if(Actividad.length > 0 && Departamento.length > 0){
-    return {'Actividad' : { $in: Actividad }, 'Departamento' : {$in: Departamento }};
-    }else if(Actividad.length > 0 && Departamento.length === 0){
-      return {'Actividad': { $in: Actividad }};
-    }else if(Actividad.length === 0 && Departamento.length > 0){
-      return {'Departamento': {$in:  Departamento }};
-    }else if(Actividad.length === 0 && Departamento.length === 0){
-      return {};
-    }
-
-  }else if(Actividad.indexOf(0) === -1){
-    return {'Actividad': { $in: Actividad }};
-  }else if(Departamento.indexOf(0) === -1){
-    return {'Departamento': {$in:  Departamento }};
-  }else{
-    return {};
-  }
-	
-
-}
 
 function ArrayFormatter () {
   Stream.call(this);
