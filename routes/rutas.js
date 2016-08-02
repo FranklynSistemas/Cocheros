@@ -50,9 +50,7 @@ router.post("/CrearContacto", function(req, res){
 	               	res.json({status: true});
 	               } 	                  
 	            });
-	   }); 
-	});   
-  
+	   });  
 });  
 
 // Rutas de autenticación y login
