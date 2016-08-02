@@ -7,10 +7,7 @@ var contactosSchema = new Schema({
    id_Obj:ObjectId,
    id:Number,
    Nombres: String,
-   Telefono : String,
-   Correo : String,
-   Mensaje : String,
-   Fecha : String
+   Mensaje : String
 });
 
 module.exports = mongoose.model('contactos', contactosSchema);

@@ -39,37 +39,17 @@ router.get('/sitemap.xml', function (req, res) {
 //Guarda un contacto en la BD
 router.post("/CrearContacto", function(req, res){
    	var datos = req.body;
-   	console.log(datos);
 	Contactos.count(function(err, cont){
-		Contactos.findOne({Correo: datos.Correo},function (err, status) {
-	      if (err){
-	         console.log("Error general");
-	      }else if(!status){
 	      		var datosAux = datos;
 	      		datosAux.id = cont++;
 	      		contacto =  new Contactos(datosAux);
 	      		contacto.save(function (err, obj) {
-	               if (!err) 
-	                  console.log(obj.Nombres + ' ha sido guardado');
-	              	  var Mensaje = '<h1> Nuevo Contacto </h1><br><p>Se ha enviado un formulario de contacto con los datos: </p>';
-	              	 	  Mensaje += '<br>Nombre: '+obj.Nombres;
-	              	 	  Mensaje += '<br>Telefono: '+obj.Telefono;
-	              	 	  Mensaje += '<br>Correo: '+obj.Correo;
-	              	 	  Mensaje += '<br>Mensaje: '+obj.Mensaje;
-
-	              	  var Correo = ['franking.sistemas@gmail.com','info@galavi.co','informacion@inprix.co'];	   
-	              	  	envioCorreos(Correo,Mensaje,req.body.origen);
-	    
-	              	  res.json({status: true,
-	              	  			Correo: obj.Correo});
-	                  //res.json({status : true});
-	                  //res.render('Administracion/Usuarios',{Nombre: req.session.VariableSession.Nombres});
-	               });
-	  		
-	      }else{
-	         console.log("El dato ya existe");
-	         res.json({status: false});
-	      }
+	               if (!err){
+	               	res.json({status: true});
+	               }else{
+	               	res.json({status: true});
+	               } 	                  
+	            });
 	   }); 
 	});   
   
