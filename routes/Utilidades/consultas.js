@@ -1,6 +1,7 @@
 var Stream = require('stream').Stream;
 var mongoose = require('mongoose');
 var UsuariosApp = require('../../schemas/usuarioApp');
+var Rating = require('../../schemas/Rating');
 
 //Envio de correos
 var sendgrid = require('sendgrid')('');
@@ -10,7 +11,7 @@ var fechas = require('./fechaColombia');
 
 
 exports.TraePefil = function(req, res) { 
-    console.log(req.body.id);
+  if(req.body.action != 0){
     UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)}, function(err, data){
        if(data){
         res.json({status:true, info: data});
@@ -18,6 +19,19 @@ exports.TraePefil = function(req, res) {
         res.json({status:false,info: "NoSeEncontroInfo"});
        }
     });
+
+  }else{
+    UsuariosApp.findOne({"_id" : mongoose.Types.ObjectId(req.body.id)},function(err,data){
+    Rating.populate(data,{path:"Rating"},function(err,result){
+      if(result){
+        res.json({status:true,info:result});
+      }else{
+        res.json({status:false,info:err});
+      }
+    });
+    
+  });
+  }
 }
 
 
@@ -139,6 +153,58 @@ function BuscaFavorito(newFavorito,favoritos) {
       favoritos.splice(idx,1);
       return {idx: idx, result: favoritos};
   }
+
+
+exports.CreaComentario = function(req, res) { 
+  UsuariosApp.findOne({"_id":req.body.id}, function(err, data){
+    if(data.Rating === undefined){
+      rating = new Rating([req.body.datos]);
+        rating.save(function (err, obj) {
+          if (!err){ 
+            ActualizaUser({id:req.body.id, idRating: obj._id}, function(result){
+                if(result.status){
+                  obj.Rating.push(req.body.datos);
+                  ActualizaRating({id:obj._id,Rating:obj.Rating}, function(result){
+                    res.json(result);
+                  });
+                }else{
+                  res.json(result);
+                }
+            });
+          }else{
+            res.json({status:false, info:"Error creando nuevo comentario"});
+          }
+        });
+    }else{
+      Rating.findOne({"_id":data.Rating}, function(err, resultado){
+        resultado.Rating.push(req.body.datos);
+        ActualizaRating({id:data.Rating,Rating:resultado.Rating}, function(result){
+          res.json(result);
+        });
+      });
+    }
+  });
+};
+
+function ActualizaUser(data, callback){
+  UsuariosApp.update({"_id" : data.id},{Rating:data.idRating},{upsert:true},function(err,numAffected){
+              if(numAffected){
+                callback({status: true});
+              }else{
+                callback({status: false, info: "NoUpdate"});
+              }
+  });
+}
+
+function ActualizaRating(data, callback){
+  Rating.update({"_id" : data.id},{Rating:data.Rating},{upsert:true},function(err,numAffected){
+              if(numAffected){
+                callback({status: true});
+              }else{
+                callback({status: false, info: "NoUpdate"});
+              }
+  });
+}
 
 //Verifica que el correo exista en base de datos y de ser asi envia el usuario y contraseña
 exports.RecuperarPass = function(req, res) { 

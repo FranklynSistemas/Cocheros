@@ -62,6 +62,8 @@ router.post('/auth/limpiaSesion', auth.limpiaSesion);
 //Perfil
 router.post('/TraePerfil', consultas.TraePefil); 
 router.post('/ActualizaPerfil', consultas.ActualizaPefil); 
+router.post('/CreaComentario', consultas.CreaComentario); 
+
 
 //Cocheros
 router.get('/TraeCocheros',consultas.TraeCocheros);

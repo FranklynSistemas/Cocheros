@@ -154,7 +154,8 @@ function mapeoDatos(data,cont){
              Foto: "",
              Hora:{ini:"",fin:""},
              Contacto:"",
-             Estado:""
+             Estado:"",
+             Rating: ""
             };
 }
 
