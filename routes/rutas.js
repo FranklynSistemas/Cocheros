@@ -70,7 +70,8 @@ router.get('/TraeCocheros',consultas.TraeCocheros);
 router.post('/AgregarFavoritos',consultas.AgregarFavoritos);
 router.post('/TraerFavoritos',consultas.TraerFavoritos);
 
-
+//Recuperar pass
+router.post('/RecuperarPass',consultas.RecuperarPass);
 
 // Ruta solo accesible si estás autenticado
 router.get('/private',middleware.ensureAuthenticated, function(req, res) {

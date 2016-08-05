@@ -17,22 +17,32 @@ exports.emailSignup = function(req, res) {
 		UsuariosApp.findOne({Usuario: datos.Usuario},function (err, status) {
 	      if (err){
 	         console.log("Error general");
+           res.status(200).send({status:false, info:"ErrorInesperado"})
 	      }else if(!status){
-		var datosAux = mapeoDatos(datos,cont);
-                usuario =  new UsuariosApp(datosAux);
-                usuario.save(function (err, obj) {
-                 if (!err){ 
-                    console.log(obj.Nombres + ' ha sido guardado');
-                    var Mensaje = '<h1> Bienvenid@ a Cocheros </h1> <br> <p>Ahora puede identificar el puesto de cocheros más proximó a su ubicación.'+
-                                  '</p><p>Recuerde que su usuario y contraseña son: <br><b>Usuario: </b>'+obj.Usuario+'<br><b>Contraseña: </b>'+obj.Pass+'</p>'+
-                                  '<br><p>Cocheros, Correo: informacion@cocherosapp.co</p>';
-                    envioCorreos(obj.Correo,Mensaje);
-                    res.status(200).send({token: service.createToken(obj),status:true});
+          UsuariosApp.findOne({Correo: datos.Correo},function (err, status) {
+          		if (err){
+                 console.log("Error general");
+                 res.status(200).send({status:false, info:"ErrorInesperado"})
+              }else if(!status){
+                      var datosAux = mapeoDatos(datos,cont);
+                          usuario =  new UsuariosApp(datosAux);
+                          usuario.save(function (err, obj) {
+                           if (!err){ 
+                              console.log(obj.Nombres + ' ha sido guardado');
+                              var Mensaje = '<h1> Bienvenid@ a Cocheros </h1> <br> <p>Ahora puede identificar el puesto de cocheros más proximó a su ubicación.'+
+                                            '</p><p>Recuerde que su usuario y contraseña son: <br><b>Usuario: </b>'+obj.Usuario+'<br><b>Contraseña: </b>'+obj.Pass+'</p>'+
+                                            '<br><p>Cocheros, Correo: informacion@cocherosapp.co</p>';
+                              //envioCorreos(obj.Correo,Mensaje);
+                              res.status(200).send({token: service.createToken(obj),status:true});
+                           }else{
+                              console.log(err);
+                              res.status(200).send({status:false, info:"ErrorInesperado"});
+                           }
+                         });
                  }else{
-                    res.status(200),send({status:false, info:"ErrorInesperado"})
+                  res.status(200).send({status:false,info:"ExisteCorreo"});
                  }
-               });
-            
+            });
 	      }else{
 	         console.log("El dato ya existe");	         
            res.status(200).send({status:false,info:"ExisteUsuario"});
@@ -59,7 +69,7 @@ exports.emailLogin = function(req, res) {
     UsuariosApp.findOne({Usuario: req.body.Usuario}, function(err, user) {        
         if(user){
           if(user.Pass === req.body.Pass && user.Activo === true && user.NumSesiones <= 0){
-            UsuariosApp.update({Usuario: req.body.Usuario},{NumSesiones:1,Token_Device: req.body.DeviceToken},{upsert:true},function(err, numAfectados){
+            UsuariosApp.update({Usuario: req.body.Usuario},{NumSesiones:1},{upsert:true},function(err, numAfectados){
               return res
               .status(200)
               .send({status: true,Rol:user.Rol,token: service.createToken(user)});
@@ -154,8 +164,7 @@ function mapeoDatos(data,cont){
              Foto: "",
              Hora:{ini:"",fin:""},
              Contacto:"",
-             Estado:"",
-             Rating: ""
+             Estado:""
             };
 }
 

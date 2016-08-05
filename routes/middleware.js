@@ -13,9 +13,13 @@ exports.ensureAuthenticated = function(req, res, next) {
   var payload = jwt.decode(token, config.TOKEN_SECRET);
 
   if(payload.exp <= moment().unix()) {
-     return res
-         .status(401)
-        .send({message: "El token ha expirado"});
+      UsuariosApp.update({"_id" : payload.sub},{NumSesiones:0},{upsert:true},function(err, numAfectados){
+          if(numAfectados){
+            return res
+             .status(401)
+              .send({message: "El token ha expirado"});
+          }
+        });
   }
 
   req.user = payload.sub;
