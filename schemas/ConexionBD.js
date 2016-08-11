@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
 //GoogleCloud
-mongoose.connect('mongodb://104.197.222.127:80/cocheros');
+mongoose.connect('mongodb://107.178.211.6:80/cocheros');
 //mongoose.connect('mongodb://localhost/infosecop');
