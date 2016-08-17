@@ -5,7 +5,7 @@ var pagos = require('./Utilidades/pagos');
 
 
 //Envio de Correos
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('');
 var fechas = require('./Utilidades/fechaColombia');
 var mongoose = require('mongoose');
 

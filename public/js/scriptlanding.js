@@ -100,7 +100,7 @@ $(function() {
     function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 4.707139, lng: -74.054689},
-        zoom: 15
+        zoom: 12
       });
   
     

@@ -4,7 +4,7 @@ var UsuariosApp = require('../../schemas/usuarioApp');
 var Rating = require('../../schemas/Rating');
 
 //Envio de correos
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('');
 
 var fechas = require('./fechaColombia');
 
