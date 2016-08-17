@@ -6,15 +6,17 @@
 <head>
   <link rel="icon" type="image/png" href="./imagenes/icon.png" />
 	<meta charset="utf-8">
-	<title>Inprix App</title>
+	<title>Red-Cocheros</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1">
 
+  <link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/stylelanding.css">
 	<link rel="stylesheet" href="css/layout.css">
+
 
 	<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/203ef159-7bbb-4801-9026-74f38042ff9b.css"/>
 
@@ -44,11 +46,22 @@
   	<div class="seven columns fullheight">
   	  <div id="logowrapper">
   	    <h1 id="logo"></h1>
-  	    <p id="text" align="justify">El modulo de compras publicas de Inprix es una herramienta tecnológica por medio de la cual el usuario puede recibir notificaciones en tiempo real cada vez que la pagina del SECOP cree una nueva convocatoria; una vez el usuario se haya registrado, comenzará a recibir información en tiempo real, con lo cual usted logrará saber de primera mano y mucho antes que cualquiera, cuales son los nuevos procesos en que puede participar.</p>
+  	    <p id="text" align="justify">Red-Cocheros es una solución tecnológica para los amantes de las comidas rápidas "Cocheros" la cual permite:<br>
+Clientes Cocheros<br>
+- Ver la ubicación de los cocheros mas cercanos. <br>
+- Agregar cocheros favoritos para estar al tanto de sus horarios,Estados y nuevas ubicaciones.<br>
+- Escribir comentarios y dar calificaciones a sus cocheros favoritos <br>
+
+Vendedores Cocheros<br>
+- Indicar su ubicación <br>
+- Indicar el horario de apertura y el horario de cierre <br>
+- Agregar estados y promociones (opcional) <br>
+- Ver los comentarios de sus clientes favoritos</p>
         <div id="Botones"><div id="googlePlay"></div><div id="appStore"></div></div>
-        <span id="submitwrapper">
+        <!--<span id="submitwrapper">
             <input id="submit" class="bg_0" type="submit" value="Conocer más..." />
-        </span>
+        </span>-->
+        <div id="flechaAbajo" class="animated infinite fadeInDown" ></div>
       </div>
 
   	</div>
@@ -74,9 +87,12 @@
     <div class="spacer"></div>
   
   </div>
+
+  <div id="map" class="map" data-tap-disabled="true"></div>
   
   <footer class="footer">
     An App by Galavi / Inprix
   </footer>
 </body>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAJmsy5mlv0JL2vmGY6UK04x55QqSRQJlU&amp;sensor=true"></script>
 </html>

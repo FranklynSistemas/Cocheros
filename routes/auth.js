@@ -5,7 +5,7 @@ var pagos = require('./Utilidades/pagos');
 
 
 //Envio de Correos
-var sendgrid = require('sendgrid')('');
+var sendgrid = require('sendgrid')('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');
 var fechas = require('./Utilidades/fechaColombia');
 var mongoose = require('mongoose');
 
@@ -14,11 +14,6 @@ var mongoose = require('mongoose');
 exports.emailSignup = function(req, res) {  
   var datos = req.body;
 	UsuariosApp.count(function(err, cont){
-		UsuariosApp.findOne({Usuario: datos.Usuario},function (err, status) {
-	      if (err){
-	         console.log("Error general");
-           res.status(200).send({status:false, info:"ErrorInesperado"})
-	      }else if(!status){
           UsuariosApp.findOne({Correo: datos.Correo},function (err, status) {
           		if (err){
                  console.log("Error general");
@@ -29,10 +24,17 @@ exports.emailSignup = function(req, res) {
                           usuario.save(function (err, obj) {
                            if (!err){ 
                               console.log(obj.Nombres + ' ha sido guardado');
-                              var Mensaje = '<h1> Bienvenid@ a Cocheros </h1> <br> <p>Ahora puede identificar el puesto de cocheros más proximó a su ubicación.'+
-                                            '</p><p>Recuerde que su usuario y contraseña son: <br><b>Usuario: </b>'+obj.Usuario+'<br><b>Contraseña: </b>'+obj.Pass+'</p>'+
-                                            '<br><p>Cocheros, Correo: informacion@cocherosapp.co</p>';
-                              //envioCorreos(obj.Correo,Mensaje);
+                              if(obj.Rol === "Vendedor"){
+                                var Mensaje = '<h1> Bienvenid@ a Cocheros </h1> <br> <p>Ahora podrá mostrar su ubicación en el mapa como también sus horarios de apertura y cierre a todos sus clientes.'+
+                                            '</p><p>Recuerde que su usuario y contraseña son: <br><b>Usuario: </b>'+obj.Correo+'<br><b>Contraseña: </b>'+obj.Pass+'</p>'+
+                                            '<br><p>Red-Cocheros, Correo: RedCocheros@gmail.com</p>';
+                              }else{
+                                var Mensaje = '<h1> Bienvenid@ a Cocheros </h1> <br> <p>Ahora puede identificar el puesto de cocheros más proximó a su ubicación.'+
+                                            '</p><p>Recuerde que su usuario y contraseña son: <br><b>Usuario: </b>'+obj.Correo+'<br><b>Contraseña: </b>'+obj.Pass+'</p>'+
+                                            '<br><p>Red-Cocheros, Correo: RedCocheros@gmail.com</p>';
+                              }
+                              
+                              envioCorreos(obj.Correo,Mensaje);
                               res.status(200).send({token: service.createToken(obj),status:true});
                            }else{
                               console.log(err);
@@ -43,11 +45,7 @@ exports.emailSignup = function(req, res) {
                   res.status(200).send({status:false,info:"ExisteCorreo"});
                  }
             });
-	      }else{
-	         console.log("El dato ya existe");	         
-           res.status(200).send({status:false,info:"ExisteUsuario"});
-	      }
-	   }); 
+	      
 	});
 //-------------------------------------------------
   /*  var user = new UsuariosApp({
@@ -66,10 +64,10 @@ exports.emailSignup = function(req, res) {
 };
 
 exports.emailLogin = function(req, res) {  
-    UsuariosApp.findOne({Usuario: req.body.Usuario}, function(err, user) {        
+    UsuariosApp.findOne({Correo: req.body.Correo}, function(err, user) {        
         if(user){
           if(user.Pass === req.body.Pass && user.Activo === true && user.NumSesiones <= 0){
-            UsuariosApp.update({Usuario: req.body.Usuario},{NumSesiones:1},{upsert:true},function(err, numAfectados){
+            UsuariosApp.update({Correo: req.body.Correo},{NumSesiones:1},{upsert:true},function(err, numAfectados){
               return res
               .status(200)
               .send({status: true,Rol:user.Rol,token: service.createToken(user)});
@@ -104,8 +102,8 @@ function envioCorreos(correos,datos){
 //var correos = ['franking.sistemas@gmail.com','flm@galavi.co', 'amvs@galavi.co'];
 sendgrid.send({
   to:       correos,
-  from:     'informacion@inprix.co',
-  subject:  'Inprix',
+  from:     'RedCocheros@gmail.com',
+  subject:  'Red-Cocheros',
   html:      datos
 }, function(err, json) {
   if (err) { return console.error(err); }
@@ -150,7 +148,6 @@ function mapeoDatos(data,cont){
              Nombres: data.Nombre,
              Correo: data.Correo,
              Notificaciones: false,
-             Usuario: data.Usuario,
              Pass: data.Pass,
              Token_Device: data.TokenDevice,
              Activo: true,

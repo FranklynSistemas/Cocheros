@@ -19,7 +19,9 @@ var consultas = require('./Utilidades/consultas');
 
 //Noticias
 //var publica = require('./Utilidades/publica');
-
+router.get('/', function (req, res) {
+    res.render('landing');
+});
 
 router.get('/robots.txt', function (req, res) {
     res.type('text/plain');

@@ -47,7 +47,8 @@ body {
     overflow: hidden;
     text-align: center;
     text-indent: -9999px;
-    width: 320px
+    width: 320px;
+    background-size: 100% 100%;
 }
 #subscribe {
     margin-top: 40px
@@ -167,7 +168,7 @@ input:focus {
 }
 #screen_0 {
     background-image: url('../imagenes/screen_0.png');
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 #screen_0:hover,
 #screen_0.hover {
@@ -176,7 +177,7 @@ input:focus {
 #screen_1 {
     background-image: url('../imagenes/screen_1.png');
     left: 288px;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 #screen_1:hover,
 #screen_1.hover {
@@ -185,7 +186,7 @@ input:focus {
 #screen_2 {
     background-image: url('../imagenes/screen_2.png');
     left: 576px;
-    background-size: 100%;;
+    background-size: 100% 100%;
 }
 #screen_2:hover,
 #screen_2.hover {
@@ -194,7 +195,7 @@ input:focus {
 #screen_3 {
     background-image: url('../imagenes/screen_3.png');
     left: 864px;
-    background-size: 100%;;
+    background-size: 100% 100%;
 }
 #screen_3:hover,
 #screen_3.hover {
@@ -203,7 +204,7 @@ input:focus {
 #screen_4 {
     background-image: url('../imagenes/screen_4.png');
     left: 1152px;
-    background-size: 100%;;
+    background-size: 100% 100%;
 }
 #screen_4:hover,
 #screen_4.hover {
@@ -212,7 +213,7 @@ input:focus {
 #screen_5 {
     background-image: url('../imagenes/screen_5.png');
     left: 1440px;
-    background-size: 100%;;
+    background-size: 100% 100%;
 }
 #screen_5:hover,
 #screen_5.hover {
@@ -221,7 +222,7 @@ input:focus {
 #screen_6 {
     background-image: url('../imagenes/screen_6.png');
     left: 1728px;
-    background-size: 100%;;
+    background-size: 100% 100%;
 }
 #screen_6:hover,
 #screen_6.hover {
@@ -236,7 +237,7 @@ input:focus {
     height: 50px;
     left: 0;
     line-height: 50px;
-    position: fixed;
+    position: relative;
     text-align: center;
     -webkit-transition: background-color 1s;
     -moz-transition: background-color 1s;
@@ -273,6 +274,7 @@ input:focus {
 #Botones{
 	width: 400px;
 	display:inline-block;
+    height: 80px;
 }
 
 #googlePlay{
@@ -292,5 +294,82 @@ input:focus {
 	width: 200px;
 	height: 100px;
 	float: right;
+    cursor: pointer;
+}
+
+#map{
+   width: 100%;
+   height: 100%; 
+}
+
+#map-canvas img {
+    max-width: none !important;
+}
+#iw-container {
+    margin-bottom: 0px;
+    background-color: #ffc900;
+    border-radius: 0px 0px 20px 20px;
+}
+#iw-container .iw-title {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    padding: 2px;
+    background-color: #886051;
+    color: white;
+    margin: 0;
+    border-radius: 2px 2px 0 0;
+}
+#iw-container .iw-content {
+    font-size: 13px;
+    color: white;
+    line-height: 18px;
+    font-weight: 400;
+    margin-right: 1px;
+    padding: 15px 5px 20px 15px;
+    max-height: 240px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.iw-content img {
+    float: right;
+    margin: 0 5px 5px 10px; 
+}
+.iw-subTitle {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 5px 0;
+}
+.iw-bottom-gradient {
+    position: absolute;
+    width: 224px;
+    height: 25px;
+    bottom: 16px;
+    border-radius: 22px;
+    right: 18px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+.gm-style-iw {
+    width: 243px !important;
+    top: 15px !important;
+    /*background-color: #fff;
+    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+    border: 1px solid #FFC107;*/
+    border-radius: 2px 2px 22px 22px;
+    height: 210px;
+}
+
+#flechaAbajo {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 40px;
+    border-bottom-width: 0px;
+    border-color: #FF9800 transparent transparent transparent;
+    margin: 0 auto;
     cursor: pointer;
 }

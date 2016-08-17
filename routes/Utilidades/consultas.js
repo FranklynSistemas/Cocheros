@@ -4,7 +4,7 @@ var UsuariosApp = require('../../schemas/usuarioApp');
 var Rating = require('../../schemas/Rating');
 
 //Envio de correos
-var sendgrid = require('sendgrid')('');
+var sendgrid = require('sendgrid')('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');
 
 var fechas = require('./fechaColombia');
 
@@ -217,10 +217,10 @@ exports.RecuperarPass = function(req, res) {
         }else if(data){ 
             Correo.push(data.Correo);
             info = '<h3>Apreciado (a) '+data.Nombres+'</h3><br><p>Te informamos que tu Usuario y Contraseña actuales son los siguientes: </p>'+
-                   '<h4>Usuario: <b>'+data.Usuario+'</b> </h4><h4>Contraseña: <b>'+data.Pass+'</b></h4><p>Te invitamos a acceder a nuestra aplicación, digitar tu usuario y contraseña, Si tienes alguna duda, sugerencia o reclamación por favor comunicarte con nuestra Línea de Servicio Telefónico o Ingresando a la pestaña <b>Contáctenos</b>.</p> <p> Cordial Saludo <p><b> INPRIX </b>';
-            /*envioCorreos(Correo,info,function(status){
+                   '<h4>Usuario: <b>'+data.Correo+'</b> </h4><h4>Contraseña: <b>'+data.Pass+'</b></h4><p>Te invitamos a acceder a nuestra aplicación, digitar tu usuario y contraseña, Si tienes alguna duda, sugerencia o reclamación por favor comunicarte con nuestra Línea de Servicio Telefónico (3003103924)</b>.</p> <p> Cordial Saludo <p><b> Red-Cocheros </b>';
+            envioCorreos(Correo,info,function(status){
               res.json(status);
-            });*/
+            });
         }else{
             res.json({status: false});
         }
@@ -268,8 +268,8 @@ function envioCorreos(correos,datos,callback){
 //var correos = ['franking.sistemas@gmail.com','flm@galavi.co', 'amvs@galavi.co'];
 sendgrid.send({
   to:        correos,
-  from:     'informacion@inprix.co',
-  subject:  'Inprix',
+  from:     'redcocheros@gmail.com',
+  subject:  'Red-Cocheros',
   html:      datos
 }, function(err, json) {
   if (err) {
